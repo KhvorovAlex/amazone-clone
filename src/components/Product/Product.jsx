@@ -1,15 +1,17 @@
 //libraries
 import React from 'react'
+//context
+import { useStateValue } from '../../context/StateProvider'
 //css
 import './Product.css'
 //img
 import StarBorderIcon from '@material-ui/icons/StarBorder'
-import { useStateValue } from '../../context/StateProvider'
 
 function Product({ id, title, image, price, rating }) {
-    const [state, dispatch] = useStateValue()
+    const [, dispatch] = useStateValue()
 
     const addToBasket = () => {
+        //добавляем товар в корзину
         dispatch({
             type: 'ADD_TO_BASKET',
             item: {
