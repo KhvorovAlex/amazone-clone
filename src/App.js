@@ -7,14 +7,22 @@ import { useStateValue } from './context/StateProvider'
 import './App.css'
 //db
 import { auth } from './firebase'
+//payment
+import { loadStripe } from '@stripe/stripe-js'
+import { Elements } from '@stripe/react-stripe-js'
 //components
 import Header from './components/Header/Header'
 import Checkout from './pages/Checkout/Checkout'
 import Home from './pages/Home/Home'
 import Login from './pages/Login/Login'
+import Payment from './pages/Payment/Payment'
+
+const promise = loadStripe(
+    'pk_test_51HSz3yDkJHSjal4Uov4qdlodhV8s9JMRdZIAT6dj0hrU7OdxxN4F8z2gUrS4KLggNHmFVCWVYcPGIC7At1yKRO1i00bz3pZo4R',
+)
 
 function App() {
-    const [{}, dispatch] = useStateValue()
+    const [, dispatch] = useStateValue()
 
     React.useEffect(() => {
         //при превом рендере спрашиваем запрашиваем в ДБ
@@ -34,15 +42,22 @@ function App() {
     return (
         <Router>
             <div className="app">
-                <Header />
                 <Switch>
                     <Route path="/login">
                         <Login />
                     </Route>
                     <Route path="/checkout">
+                        <Header />
                         <Checkout />
                     </Route>
+                    <Route path="/payment">
+                        <Header />
+                        <Elements stripe={promise}>
+                            <Payment />
+                        </Elements>
+                    </Route>
                     <Route path="/">
+                        <Header />
                         <Home />
                     </Route>
                 </Switch>

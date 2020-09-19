@@ -5,6 +5,7 @@
 **Stack:**
 
 -   ReactJS
+-   firebase
 -   react-router-dom
 -   react-currency-format
 -   @material-ui/core
