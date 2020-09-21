@@ -7,8 +7,8 @@ import './CheckoutProduct.css'
 //img
 import StarBorderIcon from '@material-ui/icons/StarBorder'
 
-function CheckoutProduct({ id, image, title, price, rating }) {
-    const [{ basket }, dispatch] = useStateValue()
+function CheckoutProduct({ id, image, title, price, rating, hideButton }) {
+    const [, dispatch] = useStateValue()
 
     const removeFromBasket = () => {
         //уддаляем товар из корзины
@@ -31,7 +31,7 @@ function CheckoutProduct({ id, image, title, price, rating }) {
                             <StarBorderIcon key={index} />
                         ))}
                 </div>
-                <button onClick={removeFromBasket}>Remove from Basket</button>
+                {!hideButton && <button onClick={removeFromBasket}>Remove from Basket</button>}
             </div>
         </div>
     )

@@ -12,6 +12,7 @@
     width: 100px;
     object-fit: contain;
     margin: 0 20px;
+    margin-top: 10px;
 }
 
 .header__search {
@@ -37,6 +38,10 @@
 .header__nav {
     display: flex;
     justify-content: space-evenly;
+}
+
+.header__nav > a {
+    text-decoration: none;
 }
 
 .header__option {

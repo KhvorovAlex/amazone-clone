@@ -9,13 +9,13 @@ import './Checkout.css'
 import CheckoutProduct from '../../components/CheckoutProduct/CheckoutProduct'
 
 function Checkout() {
-    const [{ basket, user }, dispatch] = useStateValue()
+    const [{ basket, user }] = useStateValue()
     return (
         <div className="checkout">
             <div className="checkout__left">
                 <img
                     className="checkout__ad"
-                    src="https://biomedic.co.il/wp-content/uploads/2016/08/checkout-banner.png"
+                    src="https://optilead.co.uk/wp-content/uploads/2014/08/Retail_banner.png"
                     alt="checkout"
                 />
                 <div>

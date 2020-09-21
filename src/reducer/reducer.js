@@ -4,7 +4,8 @@ export const initialState = {
 }
 
 // Selector
-export const getBasketTotal = (basket) => basket?.reduce((amount, item) => item.price + amount, 0)
+export const getBasketTotal = (basket) =>
+    basket?.reduce((amount, item) => item.price + amount, 0).toFixed(2)
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -13,6 +14,13 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 basket: [...state.basket, action.item],
+            }
+
+        //очищаем корзину
+        case 'EMPTY_BASKET':
+            return {
+                ...state,
+                basket: [],
             }
 
         //удаляем товар из корзины

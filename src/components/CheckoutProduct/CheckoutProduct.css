@@ -26,6 +26,10 @@
     display: flex;
 }
 
+.checkoutProduct__rating > .MuiSvgIcon-root {
+    color: #f0c14b;
+}
+
 .checkoutProduct__title {
     font-size: 17px;
     font-weight: 800;

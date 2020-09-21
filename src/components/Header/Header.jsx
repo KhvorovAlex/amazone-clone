@@ -1,6 +1,6 @@
 //libraRIES
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 //context
 import { useStateValue } from '../../context/StateProvider'
 //db
@@ -13,11 +13,13 @@ import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket'
 
 function Header() {
     const [{ basket, user }] = useStateValue()
+    const history = useHistory()
 
     const handleAuthentification = () => {
         if (user) {
             //если User залогинен, делаем logout
             auth.signOut()
+            history.push('/')
         }
     }
 
@@ -26,7 +28,7 @@ function Header() {
             <Link to="/">
                 <img
                     className="header__logo"
-                    src="https://images.squarespace-cdn.com/content/v1/532635b2e4b074f7f885535d/1561686188258-THGBKBHKPUY7V45HRYNO/ke17ZwdGBToddI8pDm48kPHGS5U4IFINSV_My00odPNZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIT1n-HcSrt11KpukM3NdmaVg7q5CbSoCpX2OWUsG_qzA/kisspng-logo-amazon-com-transparency-vector-graphics-image-videokurs-online-einkaufen-senior-surfer-5c778c9d474370.3369391515513386532919.png"
+                    src="https://dhjhkxawhe8q4.cloudfront.net/kensington-books-publishing-wp/wp-content/uploads/sites/3/2020/04/24132249/amazon_logo_RGB_REV.png"
                     alt="logo"
                 />
             </Link>
@@ -37,7 +39,7 @@ function Header() {
             </div>
 
             <div className="header__nav">
-                <Link to={!user && '/login'}>
+                <Link to={!user ? '/login' : ''}>
                     <div onClick={handleAuthentification} className="header__option">
                         <span className="header__optionLineOne">
                             Hello {user ? user.email : 'Guest'}
@@ -48,10 +50,12 @@ function Header() {
                     </div>
                 </Link>
 
-                <div className="header__option">
-                    <span className="header__optionLineOne">Return</span>
-                    <span className="header__optionLineTwo">& Orders</span>
-                </div>
+                <Link to={user ? '/orders' : ''}>
+                    <div className="header__option">
+                        <span className="header__optionLineOne">Return</span>
+                        <span className="header__optionLineTwo">& Orders</span>
+                    </div>
+                </Link>
 
                 <div className="header__option">
                     <span className="header__optionLineOne">Your</span>
